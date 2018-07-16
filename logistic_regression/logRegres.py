@@ -119,7 +119,7 @@ def colic_test():
                 x_row.append(float(line_list[i]))
             label_mat.append(float(line_list[21]))
             x_mat.append(x_row)
-    weights = sto_gra_ascent1(x_mat, label_mat)
+    weights = sto_gra_ascent1(x_mat, label_mat, num_iter=500)
 
     error_items = 0
     num_of_items = 0
@@ -141,4 +141,13 @@ def colic_test():
     return error_rate
 
 
-colic_test()
+def multi_test():
+    num_of_tests = 10
+    error_sum = 0.0
+    for i in range(num_of_tests):
+        error_sum += colic_test()
+    print("after %d iterations, the average error rate is %f" %
+          (num_of_tests, error_sum / float(num_of_tests)))
+
+
+multi_test()
